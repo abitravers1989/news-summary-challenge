@@ -10,13 +10,13 @@ btn.addEventListener("click", function(){
 
   ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-' + pageCounter + '.json');
   ourRequest.onload = function(){
-    if(ourRequest.status >= 200 && ourRequest.status < 400){
+    // if(ourRequest.status >= 200 && ourRequest.status < 400){
       var ourData = JSON.parse(ourRequest.responseText);
       console.log(ourData[1].name);
       rednerHTML(ourData);
-    } else {
-      console.log("connected to server but it encountered an error")
-    }
+    // } else {
+    //   console.log("connected to server but it encountered an error")
+    // }
 
   };
 
@@ -40,7 +40,7 @@ function rednerHTML(data){
     } else {
       htmlString +=" and" + data[i].foods.likes[ii];
     }
-    }
+    
    htmlString += ''.''</p>'';
   }
    newsSummary.insertAdjacentHTML('beforeend', htmlString);
