@@ -16,6 +16,7 @@
     ourRequest.onload = function (){
       data = JSON.parse(ourRequest.responseText);
       console.log(data)
+      console.log(data[0])
       dataReq = data.results;
       console.log(dataReq)
     };
@@ -24,6 +25,10 @@
 
   exports.Newsretrieval = Newsretrieval;
 })(this);
+
+
+newret = new Newsretrieval();
+newret.get();
 
 
 // function setup(){

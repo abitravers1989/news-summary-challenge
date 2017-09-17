@@ -1,5 +1,17 @@
 # News Summary challenge
 
+To Run:
+
+1. Clone or folk repo
+
+2. In terminal:
+
+```
+npm install http-server --save
+node node_modules/http-server/bin/http-server
+```
+
+
 ## Project overview
 
 This app grabs all the headlines from the Guardian newspaper API and display them on a page.  Clicking on a headline will show a summary of the article.
