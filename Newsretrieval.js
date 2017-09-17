@@ -1,7 +1,7 @@
 
 (function(exports){
   function Newsretrieval() {
-    //  var originalHttpReq = this;
+     var guardiannews = document.getElementById("news-display");
   };
 
   Newsretrieval.prototype.get = function(){
@@ -32,26 +32,11 @@
     for (i=0; i< dataFromNewsArray.length; i++){
       var element = dataFromNewsArray[i];
       console.log(element);
-      htmlString+=("<li><div>" + element + "</div></li>");
+      htmlString+=("<li><div>" + dataFromNewsArray[i].webTitle + dataFromNewsArray[i].webUrl "</div></li>");
       console.log(htmlString);
     }
   };
-
-    // function rednerHTML(data){
-    //   var htmlString = " ";
-    //
-    //   for (i = 0; i < data.length; i++){
-    //     var element = data[i]
-    //     console.log(element)
-    //     var displayList = "<p>" + data[i] + "</p>"
-    //     console.log(displayList)
-    //   }
-    //   newsSummary.insertAdjacentHTML('beforeend', htmlString);
-    //   console.log(element)
-    //   console.log(newsSummary)
-    // }
-
-
+  guardiannews.insertAdjacentHTML('beforeend', htmlString)
   exports.Newsretrieval = Newsretrieval;
 })(this);
 
