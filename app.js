@@ -1,24 +1,22 @@
-var pageCounter = 1;
-
 
 var newsSummary = document.getElementById("news-summary");
 var btn = document.getElementById("btn");
 
-btn.addEventListener("click", function () {
-	var guardianRequest = new XMLHttpRequest();
-      guardianRequest.open('GET', 'https://content.guardianapis.com/search?q=debates&api-key=26f12b3f-d1bd-4a56-a2ad-748548099aed');
-      guardianRequest.onload = function() {
-        var apidata = JSON.parse(guardianRequest.responseText);
+btn.addEventListener("click", function (apiurl) {
+	var aprirequest = new XMLHttpRequest();
+      aprirequest.open('GET', apiurl);
+      aprirequest.onload = function() {
+        var apidata = JSON.parse(aprirequest.responseText);
         renderHTML(apidata, webUrl);
 	};
-      guardianRequest.send();
+      aprirequest.send();
   });
 
-function renderHTML(data, key) {
+function renderHTML(apidata, key) {
 	var htmlString = ""
   var infofromJSONkeytoinclude = key;
-	for(i=0; i < data.length; i++) {
-		htmlString += '<li><a href= ' + data.response.results[i].+infofromJSONkeytoinclude + '>'+ '</li>'
+	for(i=0; i < apidata.length; i++) {
+		htmlString += '<li><a href= ' + apidata.response.results[i].+infofromJSONkeytoinclude + '>'+ '</li>'
 	}
 
   newsSummary.insertAdjacentHTML('beforeend', htmlString)
