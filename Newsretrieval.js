@@ -1,14 +1,13 @@
 
 (function(exports){
   function Newsretrieval() {
-    //  var guardiannews = document.getElementById("news-display");
+    // var btn = document.getElementById("btn");
   };
 
   Newsretrieval.prototype.get = function(){
     var originalHttpReq = this;
     var data;
     var dataFromNewsArray;
-    console.log(dataFromNewsArray)
 
     var ourRequest = new XMLHttpRequest();
 
@@ -26,9 +25,6 @@
 
   Newsretrieval.prototype.renderHTML = function(dataFromNewsArray){
     var htmlString = "";
-    console.log("got string")
-    console.log(dataFromNewsArray.length)
-    console.log("above was length")
     for (i=0; i< dataFromNewsArray.length; i++){
       htmlString+=("<li><div>" + dataFromNewsArray[i].webTitle + dataFromNewsArray[i].webUrl + "</div></li>");
       console.log(htmlString);

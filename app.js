@@ -4,44 +4,22 @@ var pageCounter = 1;
 var newsSummary = document.getElementById("news-summary");
 var btn = document.getElementById("btn");
 
-btn.addEventListener("click", function(){
+btn.addEventListener("click", function () {
+	var guardianRequest = new XMLHttpRequest();
+      guardianRequest.open('GET', 'https://content.guardianapis.com/search?q=debates&api-key=26f12b3f-d1bd-4a56-a2ad-748548099aed');
+      guardianRequest.onload = function() {
+        var apidata = JSON.parse(guardianRequest.responseText);
+        renderHTML(apidata, webUrl);
+	};
+      guardianRequest.send();
+  });
 
-  var ourRequest = new XMLHttpRequest();
+function renderHTML(data, key) {
+	var htmlString = ""
+  var infofromJSONkeytoinclude = key;
+	for(i=0; i < data.length; i++) {
+		htmlString += '<li><a href= ' + data.response.results[i].+infofromJSONkeytoinclude + '>'+ '</li>'
+	}
 
-  ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-' + pageCounter + '.json');
-  ourRequest.onload = function(){
-    // if(ourRequest.status >= 200 && ourRequest.status < 400){
-      var ourData = JSON.parse(ourRequest.responseText);
-      console.log(ourData[1].name);
-      rednerHTML(ourData);
-    // } else {
-    //   console.log("connected to server but it encountered an error")
-    // }
-
-  };
-
-
-  ourRequest.send();
-  pageCounter++;
-  if(pageCounter > 3){
-    btn.classList.add("hide-me");
-  }
-});
-
-function rednerHTML(data){
-  var htmlString = " ";
-
-  for (i = 0; i < data.length; i++){
-    htmlString += "<p> " + data[i].name + "is a " + data[i].species + "</p>";
-
-    for (ii =0; ii<data[i].foods.likes.length; ii++){
-      if (ii ===0){
-      htmlString +=data[i].foods.likes[ii];
-    } else {
-      htmlString +=" and" + data[i].foods.likes[ii];
-    }
-    
-   htmlString += ''.''</p>'';
-  }
-   newsSummary.insertAdjacentHTML('beforeend', htmlString);
+  newsSummary.insertAdjacentHTML('beforeend', htmlString)
 }
