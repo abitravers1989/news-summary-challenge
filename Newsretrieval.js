@@ -1,24 +1,24 @@
 
 (function(exports){
   function Newsretrieval() {
-     var originalHttpReq = this;
-     console.log(originalHttpReq)
-     var data;
-     console.log(data)
-     var dataReq;
+    //  var originalHttpReq = this;
   };
 
   Newsretrieval.prototype.get = function(){
+    var originalHttpReq = this;
+    var data;
+    var dataFromNewsArray;
+    console.log(dataFromNewsArray)
 
     var ourRequest = new XMLHttpRequest();
+
     ourRequest.open("GET", "https://content.guardianapis.com/search?q=debates&api-key=test");
-    console.log(ourRequest);
     ourRequest.onload = function (){
+
       data = JSON.parse(ourRequest.responseText);
-      console.log(data)
-      console.log(data[0])
-      dataReq = data.results;
-      console.log(dataReq)
+      dataFromNewsArray = data.response.results;
+      originalHttpReq.dataFromNewsArray = dataFromNewsArray
+
     };
    ourRequest.send();
   };
@@ -29,6 +29,15 @@
 
 newret = new Newsretrieval();
 newret.get();
+
+
+
+
+
+
+
+
+
 
 
 // function setup(){
